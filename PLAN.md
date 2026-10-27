@@ -1,7 +1,7 @@
 # Rep & Rest – Plan
 
 > **Name: Rep & Rest.** Logo: noch offen (Konzepte in `design/logo-concepts.html`).
-> Paket-ID vorerst `dev.placeholder.workout`, muss vor der ersten Verteilung an Freunde festgelegt werden.
+> Paket-ID: `de.knode.represt` (Android und iOS, nicht mehr ändern).
 
 ---
 
