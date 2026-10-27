@@ -33,3 +33,20 @@ export function formatDuration(seconds: number, t: TFunction): string {
 }
 
 export default i18n;
+
+/** Übersetzt einen Tag, unbekannte Tags bleiben wie sie sind. */
+export function tagLabel(tag: string, t: TFunction): string {
+  return t(`tags.${tag}`, { defaultValue: tag });
+}
+
+export function applyLanguage(setting: 'system' | Locale): void {
+  const lng = setting === 'system' ? systemLocale() : setting;
+  // eslint-disable-next-line import/no-named-as-default-member
+  if (i18n.language !== lng) void i18n.changeLanguage(lng);
+}
+
+/** 754 → "12:34" */
+export function formatClock(totalSeconds: number): string {
+  const s = Math.max(0, Math.ceil(totalSeconds));
+  return `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`;
+}

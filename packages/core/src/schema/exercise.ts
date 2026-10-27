@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { Figure } from './figure';
 import { LocalizedText } from './localized';
 
 /** ID im Format "<pack>.<name>", z. B. "general.pushup". */
@@ -20,6 +21,8 @@ export const Exercise = z.object({
       image: AssetRef.optional(),
       animation: AssetRef.optional(),
       video: AssetRef.optional(),
+      /** Gezeichnete Strichfigur, Fallback wenn kein Bild vorhanden ist. */
+      figure: Figure.optional(),
     })
     .default({}),
   tags: z.array(z.string()).default([]),

@@ -1,14 +1,94 @@
 {
-  "tabs": { "workouts": "Workouts", "library": "Exercises", "settings": "Settings" },
+  "tabs": {
+    "workouts": "Workouts",
+    "library": "Exercises",
+    "history": "History",
+    "settings": "Settings"
+  },
+  "common": {
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "close": "Close",
+    "done": "Done",
+    "edit": "Edit",
+    "back": "Back"
+  },
   "workouts": {
     "title": "Workouts",
+    "mine": "My workouts",
+    "templates": "Templates",
+    "new": "New workout",
+    "import": "Import",
+    "empty": "No workouts of your own yet. Build one or copy a template.",
     "exercises_one": "{{count}} exercise",
     "exercises_other": "{{count}} exercises",
-    "manual_one": "+ {{count}} step by reps",
-    "manual_other": "+ {{count}} steps by reps",
-    "notFound": "Workout not found"
+    "approx": "approx. {{duration}}",
+    "notFound": "Workout not found",
+    "start": "Start",
+    "copy": "Copy & edit",
+    "export": "Export",
+    "deleteConfirm": "Really delete “{{name}}”?",
+    "copyName": "{{name}} (copy)"
   },
-  "library": { "title": "Exercises" },
+  "builder": {
+    "titleNew": "New workout",
+    "titleEdit": "Edit workout",
+    "name": "Name",
+    "namePlaceholder": "e.g. Morning routine",
+    "addExercise": "Exercise",
+    "addRest": "Rest",
+    "addRepeat": "Rounds",
+    "addGroup": "Section",
+    "rest": "Rest",
+    "rounds": "{{count}}× rounds",
+    "restBetween": "Rest between rounds",
+    "groupName": "Section",
+    "time": "Time",
+    "reps": "Reps",
+    "emptyLevel": "Empty – add blocks below.",
+    "pickExercise": "Choose exercise",
+    "search": "Search …",
+    "invalid": "Please enter a name and add at least one block.",
+    "readonly": "This block can't be edited here yet."
+  },
+  "import": {
+    "title": "Import workout",
+    "pickFile": "Choose file",
+    "orPaste": "or paste JSON",
+    "pastePlaceholder": "{ \"format\": \"workout.file\", … }",
+    "check": "Check & import",
+    "errors": "The file is not valid:",
+    "missing": "The app doesn't know these exercises: {{list}}",
+    "unsupported": "These blocks aren't supported by this version yet: {{list}}",
+    "success": "“{{name}}” was imported."
+  },
+  "player": {
+    "getReady": "Get ready",
+    "next": "Up next",
+    "last": "Last exercise",
+    "doneReps": "Done",
+    "paused": "Paused",
+    "finished": "Well done!",
+    "finishedSub": "{{duration}} · {{count}} steps",
+    "plus10": "+10 s",
+    "quitTitle": "End workout?",
+    "quit": "End",
+    "continue": "Continue"
+  },
+  "history": {
+    "title": "History",
+    "empty": "No workouts completed yet.",
+    "aborted": "aborted",
+    "thisWeek": "This week: {{count}} workouts · {{duration}}"
+  },
+  "library": {
+    "title": "Exercises"
+  },
+  "exercise": {
+    "cues": "Tips",
+    "defaults": "Default"
+  },
   "step": {
     "rest": "Rest",
     "note": "Note",
@@ -22,7 +102,31 @@
     "title": "Settings",
     "language": "Language",
     "system": "System language",
-    "version": "Version {{version}}"
+    "training": "Training",
+    "leadIn": "Countdown before start",
+    "sound": "Sounds",
+    "vibration": "Vibration",
+    "version": "Version {{version}}",
+    "off": "off"
   },
-  "duration": { "seconds": "{{count}} s", "minutes": "{{count}} min", "minutesSeconds": "{{m}}:{{s}} min" }
+  "duration": {
+    "seconds": "{{count}} s",
+    "minutes": "{{count}} min",
+    "minutesSeconds": "{{m}}:{{s}} min"
+  },
+  "tags": {
+    "cardio": "Cardio",
+    "warmup": "Warm-up",
+    "strength": "Strength",
+    "chest": "Chest",
+    "arms": "Arms",
+    "legs": "Legs",
+    "core": "Core",
+    "glutes": "Glutes",
+    "back": "Back",
+    "full_body": "Full body",
+    "mobility": "Mobility",
+    "shoulders": "Shoulders",
+    "balance": "Balance"
+  }
 }

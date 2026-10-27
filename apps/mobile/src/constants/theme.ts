@@ -14,8 +14,9 @@ export const Colors = {
     backgroundElement: '#F0F0F3',
     backgroundSelected: '#E0E1E6',
     textSecondary: '#60646C',
-    tint: '#208AEF',
+    tint: '#E8572B',
     onTint: '#ffffff',
+    danger: '#D93025',
   },
   dark: {
     text: '#ffffff',
@@ -23,9 +24,18 @@ export const Colors = {
     backgroundElement: '#212225',
     backgroundSelected: '#2E3135',
     textSecondary: '#B0B4BA',
-    tint: '#4DA3F5',
+    tint: '#FF6B3D',
     onTint: '#000000',
+    danger: '#FF6B6B',
   },
+} as const;
+
+/** Markenfarben, unabhängig vom Hell/Dunkel-Modus. Rep = Anstrengung, Rest = Pause. */
+export const Brand = {
+  rep: '#FF6B3D',
+  rest: '#2EC4B6',
+  night: '#0F1B2D',
+  onBrand: '#FFFFFF',
 } as const;
 
 export type ThemeColor = keyof typeof Colors.light & keyof typeof Colors.dark;

@@ -27,3 +27,9 @@ describe('Mitgelieferte Sport-Packs', () => {
       }
   });
 });
+
+describe('Strichfiguren', () => {
+  it('jede mitgelieferte Übung hat eine Figur', () => {
+    for (const e of all) expect(e.media.figure, e.id).toBeDefined();
+  });
+});

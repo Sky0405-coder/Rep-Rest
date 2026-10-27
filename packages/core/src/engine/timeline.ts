@@ -117,9 +117,16 @@ function pushExercise(
   }
 }
 
+/** Geschätzte Sekunden pro Wiederholung, für die ungefähre Gesamtdauer. */
+export const SECONDS_PER_REP = 3;
+/** Geschätzte Sekunden für Steps ohne Dauer und ohne Wiederholungen (z. B. Notizen). */
+const SECONDS_PER_MANUAL_STEP = 10;
+
 export type TimelineSummary = {
   /** Summe aller festen Dauern in Sekunden. */
   totalSeconds: number;
+  /** totalSeconds plus Schätzung für Steps nach Wiederholungen. */
+  estimatedSeconds: number;
   /** Anzahl Steps ohne feste Dauer (per Tap weiter). */
   manualSteps: number;
   exerciseSteps: number;
@@ -129,10 +136,16 @@ export function summarize(steps: Step[]): TimelineSummary {
   let totalSeconds = 0;
   let manualSteps = 0;
   let exerciseSteps = 0;
+  let estimatedSeconds = 0;
   for (const s of steps) {
-    if (s.duration !== undefined) totalSeconds += s.duration;
-    else manualSteps++;
+    if (s.duration !== undefined) {
+      totalSeconds += s.duration;
+      estimatedSeconds += s.duration;
+    } else {
+      manualSteps++;
+      estimatedSeconds += s.reps ? s.reps * SECONDS_PER_REP : SECONDS_PER_MANUAL_STEP;
+    }
     if (s.kind === 'exercise') exerciseSteps++;
   }
-  return { totalSeconds, manualSteps, exerciseSteps };
+  return { totalSeconds, estimatedSeconds, manualSteps, exerciseSteps };
 }

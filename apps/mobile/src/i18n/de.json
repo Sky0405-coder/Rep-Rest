@@ -1,14 +1,94 @@
 {
-  "tabs": { "workouts": "Workouts", "library": "Übungen", "settings": "Einstellungen" },
+  "tabs": {
+    "workouts": "Workouts",
+    "library": "Übungen",
+    "history": "Verlauf",
+    "settings": "Einstellungen"
+  },
+  "common": {
+    "save": "Speichern",
+    "cancel": "Abbrechen",
+    "delete": "Löschen",
+    "close": "Schließen",
+    "done": "Fertig",
+    "edit": "Bearbeiten",
+    "back": "Zurück"
+  },
   "workouts": {
     "title": "Workouts",
+    "mine": "Meine Workouts",
+    "templates": "Vorlagen",
+    "new": "Neues Workout",
+    "import": "Importieren",
+    "empty": "Noch keine eigenen Workouts. Bau dir eins oder kopier eine Vorlage.",
     "exercises_one": "{{count}} Übung",
     "exercises_other": "{{count}} Übungen",
-    "manual_one": "+ {{count}} Schritt nach Wiederholungen",
-    "manual_other": "+ {{count}} Schritte nach Wiederholungen",
-    "notFound": "Workout nicht gefunden"
+    "approx": "ca. {{duration}}",
+    "notFound": "Workout nicht gefunden",
+    "start": "Starten",
+    "copy": "Kopieren & bearbeiten",
+    "export": "Exportieren",
+    "deleteConfirm": "„{{name}}“ wirklich löschen?",
+    "copyName": "{{name}} (Kopie)"
   },
-  "library": { "title": "Übungen" },
+  "builder": {
+    "titleNew": "Neues Workout",
+    "titleEdit": "Workout bearbeiten",
+    "name": "Name",
+    "namePlaceholder": "z. B. Morgenroutine",
+    "addExercise": "Übung",
+    "addRest": "Pause",
+    "addRepeat": "Runden",
+    "addGroup": "Abschnitt",
+    "rest": "Pause",
+    "rounds": "{{count}}× Runden",
+    "restBetween": "Pause zwischen Runden",
+    "groupName": "Abschnitt",
+    "time": "Zeit",
+    "reps": "Wdh.",
+    "emptyLevel": "Noch leer – füge unten Bausteine hinzu.",
+    "pickExercise": "Übung wählen",
+    "search": "Suchen …",
+    "invalid": "Bitte gib einen Namen ein und füge mindestens einen Baustein hinzu.",
+    "readonly": "Dieser Baustein kann hier noch nicht bearbeitet werden."
+  },
+  "import": {
+    "title": "Workout importieren",
+    "pickFile": "Datei wählen",
+    "orPaste": "oder JSON einfügen",
+    "pastePlaceholder": "{ \"format\": \"workout.file\", … }",
+    "check": "Prüfen & importieren",
+    "errors": "Die Datei ist nicht gültig:",
+    "missing": "Diese Übungen kennt die App nicht: {{list}}",
+    "unsupported": "Diese Bausteine werden von dieser Version noch nicht unterstützt: {{list}}",
+    "success": "„{{name}}“ wurde importiert."
+  },
+  "player": {
+    "getReady": "Gleich geht's los",
+    "next": "Als Nächstes",
+    "last": "Letzte Übung",
+    "doneReps": "Geschafft",
+    "paused": "Pausiert",
+    "finished": "Geschafft!",
+    "finishedSub": "{{duration}} · {{count}} Schritte",
+    "plus10": "+10 s",
+    "quitTitle": "Workout beenden?",
+    "quit": "Beenden",
+    "continue": "Weiter"
+  },
+  "history": {
+    "title": "Verlauf",
+    "empty": "Noch keine Workouts absolviert.",
+    "aborted": "abgebrochen",
+    "thisWeek": "Diese Woche: {{count}} Workouts · {{duration}}"
+  },
+  "library": {
+    "title": "Übungen"
+  },
+  "exercise": {
+    "cues": "Tipps",
+    "defaults": "Standard"
+  },
   "step": {
     "rest": "Pause",
     "note": "Hinweis",
@@ -22,7 +102,31 @@
     "title": "Einstellungen",
     "language": "Sprache",
     "system": "Systemsprache",
-    "version": "Version {{version}}"
+    "training": "Training",
+    "leadIn": "Vorlauf vor dem Start",
+    "sound": "Töne",
+    "vibration": "Vibration",
+    "version": "Version {{version}}",
+    "off": "aus"
   },
-  "duration": { "seconds": "{{count}} s", "minutes": "{{count}} Min.", "minutesSeconds": "{{m}}:{{s}} Min." }
+  "duration": {
+    "seconds": "{{count}} s",
+    "minutes": "{{count}} Min.",
+    "minutesSeconds": "{{m}}:{{s}} Min."
+  },
+  "tags": {
+    "cardio": "Cardio",
+    "warmup": "Aufwärmen",
+    "strength": "Kraft",
+    "chest": "Brust",
+    "arms": "Arme",
+    "legs": "Beine",
+    "core": "Rumpf",
+    "glutes": "Po",
+    "back": "Rücken",
+    "full_body": "Ganzkörper",
+    "mobility": "Mobilität",
+    "shoulders": "Schultern",
+    "balance": "Balance"
+  }
 }

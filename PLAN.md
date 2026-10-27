@@ -224,7 +224,7 @@ Player: großes Bild, riesige Restzeit, „Als Nächstes“, Fortschrittsbalken,
 | Phase | Inhalt | Ergebnis |
 |---|---|---|
 | **0 – Setup** ✅ | Monorepo, Expo-App (Android + Web), `core` mit Zod-Schemas, Vitest, Lint, i18n-Grundgerüst | Grundgerüst läuft auf Android und im Browser |
-| **1 – MVP lokal** | Engine + Player (Timer, Sounds, Bild), Pack `general`, Builder, JSON-Import/-Export, SQLite, Verlauf | **Persönlich nutzbar**, offline |
+| **1 – MVP lokal** ✅ | Engine + Player (Timer, Sounds, Bild), Pack `general`, Builder, JSON-Import/-Export, SQLite, Verlauf | **Persönlich nutzbar**, offline |
 | **2 – Backend** | Hono + Postgres + Better Auth + MinIO auf Coolify, Login, Sync, Katalog, Teilen, Account-Löschung | Sync zwischen Geräten, Freunde können mitmachen |
 | **3 – Updates & Linux** | Eigener OTA-Server, APK-Update-Check, Tauri-Linux-Build + Updater, Release-Skript | Verteilung an Freunde ohne Store |
 | **4 – Breath-Pack** | Tabellen, Max-Hold, Atemmuster, Bestzeiten, Sicherheitshinweise | Apnoe-Training |

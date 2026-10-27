@@ -72,6 +72,6 @@ describe('flatten', () => {
       { type: 'rest', duration: 15 },
       { type: 'exercise', ref: 'general.plank' },
     ]);
-    expect(summarize(steps)).toEqual({ totalSeconds: 60, manualSteps: 1, exerciseSteps: 2 });
+    expect(summarize(steps)).toEqual({ totalSeconds: 60, estimatedSeconds: 90, manualSteps: 1, exerciseSteps: 2 });
   });
 });

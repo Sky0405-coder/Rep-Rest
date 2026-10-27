@@ -19,7 +19,8 @@ export default function TabLayout() {
   return (
     <Tabs screenOptions={{ tabBarActiveTintColor: theme.tint }}>
       <Tabs.Screen name="index" options={{ title: t('tabs.workouts'), tabBarIcon: icon('barbell-outline') }} />
-      <Tabs.Screen name="library" options={{ title: t('tabs.library'), tabBarIcon: icon('list-outline') }} />
+      <Tabs.Screen name="library" options={{ title: t('tabs.library'), tabBarIcon: icon('body-outline') }} />
+      <Tabs.Screen name="history" options={{ title: t('tabs.history'), tabBarIcon: icon('calendar-outline') }} />
       <Tabs.Screen name="settings" options={{ title: t('tabs.settings'), tabBarIcon: icon('settings-outline') }} />
     </Tabs>
   );
