@@ -1,0 +1,12 @@
+# In Coolify als "Docker Compose"-Ressource eintragen. Die Domain wird in Coolify beim Service "web" gesetzt.
+services:
+  web:
+    image: ghcr.io/sky0405-coder/rep-rest-web:latest
+    restart: unless-stopped
+    expose:
+      - "80"
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1/healthz"]
+      interval: 30s
+      timeout: 3s
+      retries: 3

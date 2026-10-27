@@ -1,0 +1,26 @@
+import { Exercise, Workout, type SportPackManifest } from '@workout/core';
+import generalExercises from './general/exercises.json';
+import generalWorkouts from './general/workouts.json';
+
+export type BundledPack = {
+  manifest: SportPackManifest;
+  exercises: Exercise[];
+  workouts: Workout[];
+};
+
+/** Validiert die mitgelieferten Daten. Fehler hier sind Programmierfehler und sollen laut auffallen. */
+function pack(manifest: SportPackManifest, exercises: unknown[], workouts: unknown[]): BundledPack {
+  return {
+    manifest,
+    exercises: exercises.map((e) => Exercise.parse(e)),
+    workouts: workouts.map((w) => Workout.parse(w)),
+  };
+}
+
+export const bundledPacks: BundledPack[] = [
+  pack(
+    { id: 'general', version: '0.1.0', name: { de: 'Allgemein', en: 'General' }, color: '#208AEF', icon: 'fitness' },
+    generalExercises,
+    generalWorkouts,
+  ),
+];

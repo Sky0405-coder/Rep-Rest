@@ -1,0 +1,28 @@
+{
+  "tabs": { "workouts": "Workouts", "library": "Exercises", "settings": "Settings" },
+  "workouts": {
+    "title": "Workouts",
+    "exercises_one": "{{count}} exercise",
+    "exercises_other": "{{count}} exercises",
+    "manual_one": "+ {{count}} step by reps",
+    "manual_other": "+ {{count}} steps by reps",
+    "notFound": "Workout not found"
+  },
+  "library": { "title": "Exercises" },
+  "step": {
+    "rest": "Rest",
+    "note": "Note",
+    "unsupported": "Block “{{type}}” is not supported by this app version",
+    "reps": "{{count}}×",
+    "left": "left",
+    "right": "right",
+    "round": "Round {{current}}/{{total}}"
+  },
+  "settings": {
+    "title": "Settings",
+    "language": "Language",
+    "system": "System language",
+    "version": "Version {{version}}"
+  },
+  "duration": { "seconds": "{{count}} s", "minutes": "{{count}} min", "minutesSeconds": "{{m}}:{{s}} min" }
+}

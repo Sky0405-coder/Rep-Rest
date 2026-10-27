@@ -1,0 +1,13 @@
+{
+  "name": "rep-rest",
+  "private": true,
+  "packageManager": "pnpm@10.34.9",
+  "scripts": {
+    "test": "pnpm -r test",
+    "typecheck": "pnpm -r typecheck",
+    "lint": "pnpm -r lint",
+    "mobile": "pnpm --filter mobile start",
+    "android": "./scripts/android.sh",
+    "web": "pnpm --filter mobile web"
+  }
+}

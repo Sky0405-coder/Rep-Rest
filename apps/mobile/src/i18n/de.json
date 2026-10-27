@@ -1,0 +1,28 @@
+{
+  "tabs": { "workouts": "Workouts", "library": "Übungen", "settings": "Einstellungen" },
+  "workouts": {
+    "title": "Workouts",
+    "exercises_one": "{{count}} Übung",
+    "exercises_other": "{{count}} Übungen",
+    "manual_one": "+ {{count}} Schritt nach Wiederholungen",
+    "manual_other": "+ {{count}} Schritte nach Wiederholungen",
+    "notFound": "Workout nicht gefunden"
+  },
+  "library": { "title": "Übungen" },
+  "step": {
+    "rest": "Pause",
+    "note": "Hinweis",
+    "unsupported": "Baustein „{{type}}“ wird von dieser App-Version nicht unterstützt",
+    "reps": "{{count}}×",
+    "left": "links",
+    "right": "rechts",
+    "round": "Runde {{current}}/{{total}}"
+  },
+  "settings": {
+    "title": "Einstellungen",
+    "language": "Sprache",
+    "system": "Systemsprache",
+    "version": "Version {{version}}"
+  },
+  "duration": { "seconds": "{{count}} s", "minutes": "{{count}} Min.", "minutesSeconds": "{{m}}:{{s}} Min." }
+}

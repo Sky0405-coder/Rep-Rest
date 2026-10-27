@@ -1,0 +1,39 @@
+[
+  {
+    "id": "general.quick_full_body",
+    "name": { "de": "Schnelles Ganzkörper-Workout", "en": "Quick Full Body" },
+    "description": { "de": "3 Runden, ohne Geräte", "en": "3 rounds, no equipment" },
+    "sportPack": "general",
+    "difficulty": 2,
+    "blocks": [
+      { "type": "group", "name": { "de": "Aufwärmen", "en": "Warm-up" }, "blocks": [
+        { "type": "exercise", "ref": "general.jumping_jacks", "duration": 45 },
+        { "type": "exercise", "ref": "general.cat_cow", "duration": 30 }
+      ]},
+      { "type": "group", "name": { "de": "Hauptteil", "en": "Main" }, "blocks": [
+        { "type": "repeat", "times": 3, "restBetween": 60, "blocks": [
+          { "type": "exercise", "ref": "general.squat" },
+          { "type": "rest", "duration": 15 },
+          { "type": "exercise", "ref": "general.pushup" },
+          { "type": "rest", "duration": 15 },
+          { "type": "exercise", "ref": "general.plank", "duration": 40 },
+          { "type": "rest", "duration": 15 },
+          { "type": "exercise", "ref": "general.lunge" }
+        ]}
+      ]},
+      { "type": "group", "name": { "de": "Abwärmen", "en": "Cool-down" }, "blocks": [
+        { "type": "exercise", "ref": "general.cat_cow", "duration": 60 }
+      ]}
+    ]
+  },
+  {
+    "id": "general.tabata_core",
+    "name": { "de": "Tabata Core", "en": "Tabata Core" },
+    "description": { "de": "4 Minuten Vollgas", "en": "4 minutes all-out" },
+    "sportPack": "general",
+    "difficulty": 3,
+    "blocks": [
+      { "type": "interval", "refs": ["general.mountain_climbers", "general.plank"], "work": 20, "rest": 10, "rounds": 8 }
+    ]
+  }
+]

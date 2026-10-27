@@ -1,0 +1,8 @@
+**/node_modules
+**/.expo
+**/dist
+**/web-build
+apps/mobile/android
+apps/mobile/ios
+.git
+design

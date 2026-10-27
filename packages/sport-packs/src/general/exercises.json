@@ -1,0 +1,14 @@
+[
+  { "id": "general.jumping_jacks", "sportPack": "general", "name": { "de": "Hampelmann", "en": "Jumping Jacks" }, "cues": [{ "de": "Locker in den Knien bleiben", "en": "Keep your knees soft" }], "tags": ["cardio", "warmup"], "defaults": { "mode": "time", "duration": 45 } },
+  { "id": "general.pushup", "sportPack": "general", "name": { "de": "Liegestütz", "en": "Push-up" }, "cues": [{ "de": "Körper bildet eine Linie", "en": "Body in one straight line" }], "tags": ["strength", "chest", "arms"], "defaults": { "mode": "reps", "reps": 10 } },
+  { "id": "general.squat", "sportPack": "general", "name": { "de": "Kniebeuge", "en": "Squat" }, "cues": [{ "de": "Knie über den Zehen, Rücken gerade", "en": "Knees over toes, back straight" }], "tags": ["strength", "legs"], "defaults": { "mode": "reps", "reps": 15 } },
+  { "id": "general.plank", "sportPack": "general", "name": { "de": "Unterarmstütz", "en": "Plank" }, "cues": [{ "de": "Bauch und Po anspannen", "en": "Brace core and glutes" }], "tags": ["core"], "defaults": { "mode": "time", "duration": 45 } },
+  { "id": "general.side_plank", "sportPack": "general", "name": { "de": "Seitstütz", "en": "Side Plank" }, "tags": ["core"], "sides": "left_right", "defaults": { "mode": "time", "duration": 30 } },
+  { "id": "general.lunge", "sportPack": "general", "name": { "de": "Ausfallschritt", "en": "Lunge" }, "tags": ["strength", "legs"], "sides": "left_right", "defaults": { "mode": "reps", "reps": 10 } },
+  { "id": "general.mountain_climbers", "sportPack": "general", "name": { "de": "Bergsteiger", "en": "Mountain Climbers" }, "tags": ["cardio", "core"], "defaults": { "mode": "time", "duration": 30 } },
+  { "id": "general.glute_bridge", "sportPack": "general", "name": { "de": "Beckenheben", "en": "Glute Bridge" }, "tags": ["strength", "glutes"], "defaults": { "mode": "reps", "reps": 15 } },
+  { "id": "general.superman", "sportPack": "general", "name": { "de": "Superman", "en": "Superman" }, "tags": ["back", "core"], "defaults": { "mode": "time", "duration": 30 } },
+  { "id": "general.burpee", "sportPack": "general", "name": { "de": "Burpee", "en": "Burpee" }, "tags": ["cardio", "full_body"], "defaults": { "mode": "reps", "reps": 8 } },
+  { "id": "general.high_knees", "sportPack": "general", "name": { "de": "Kniehebelauf", "en": "High Knees" }, "tags": ["cardio", "warmup"], "defaults": { "mode": "time", "duration": 30 } },
+  { "id": "general.cat_cow", "sportPack": "general", "name": { "de": "Katze-Kuh", "en": "Cat-Cow" }, "tags": ["mobility", "back"], "defaults": { "mode": "time", "duration": 45 } }
+]
