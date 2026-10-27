@@ -1,12 +1,12 @@
 # In Coolify als "Docker Compose"-Ressource eintragen.
-# Der Container wird auf dem Server unter Port WEB_PORT (Standard 8090) veröffentlicht,
-# z. B. als Ziel für einen Cloudflare Tunnel: http://localhost:8090
+# Der Container wird auf dem Server unter Port WEB_PORT (Standard 8093) veröffentlicht,
+# z. B. als Ziel für einen Cloudflare Tunnel: http://localhost:8093
 services:
   web:
     image: ghcr.io/sky0405-coder/rep-rest-web:latest
     restart: unless-stopped
     ports:
-      - "${WEB_PORT:-8090}:80"
+      - "${WEB_PORT:-8093}:80"
     healthcheck:
       test: ["CMD", "wget", "-qO-", "http://127.0.0.1/healthz"]
       interval: 30s
