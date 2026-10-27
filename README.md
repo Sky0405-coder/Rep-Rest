@@ -34,6 +34,7 @@ und nicht von Hand bearbeitet. Native Einstellungen gehören in `apps/mobile/app
 - Bei Push auf `main` wird die Web-Version als Image gebaut und nach
   `ghcr.io/sky0405-coder/rep-rest-web` gepusht (`latest` und Commit-SHA).
 - **Coolify**: [`deploy/docker-compose.yml`](deploy/docker-compose.yml) als Docker-Compose-Ressource
-  eintragen und die Domain beim Service `web` setzen.
+  eintragen. Der Container läuft auf dem Server unter Port `WEB_PORT` (Standard `8090`).
+  Cloudflare Tunnel: Public Hostname `represt.k-node.de` → `http://localhost:8090`.
 - Automatisches Redeploy: Repo-Secrets `COOLIFY_WEBHOOK` und `COOLIFY_TOKEN` setzen.
   Ohne die beiden Secrets wird der Schritt übersprungen.
