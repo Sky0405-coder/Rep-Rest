@@ -36,5 +36,13 @@ und nicht von Hand bearbeitet. Native Einstellungen gehören in `apps/mobile/app
 - **Coolify**: [`deploy/docker-compose.yml`](deploy/docker-compose.yml) als Docker-Compose-Ressource
   eintragen. Der Container läuft auf dem Server unter Port `WEB_PORT` (Standard `8093`).
   Cloudflare Tunnel: Public Hostname `represt.k-node.de` → `http://localhost:8093`.
-- Automatisches Redeploy: Repo-Secrets `COOLIFY_WEBHOOK` und `COOLIFY_TOKEN` setzen.
+- Automatisches Redeploy: Repo-Secrets `COOLIFY_DEPLOY_URL` und `COOLIFY_TOKEN` (sind gesetzt).
   Ohne die beiden Secrets wird der Schritt übersprungen.
+
+## Android-Releases
+- Tag pushen, z. B. `git tag v0.1.0 && git push origin v0.1.0`. Dann baut
+  `.github/workflows/android-release.yml` eine signierte APK und hängt sie an ein GitHub Release.
+  Tags mit Bindestrich (`v0.2.0-beta.1`) werden als Pre-Release markiert.
+- Manueller Testbuild ohne Release: Actions → „Android Release“ → „Run workflow“ (APK als Artefakt).
+- Signierschlüssel: Repo-Secrets `ANDROID_KEYSTORE_BASE64`, `ANDROID_KEYSTORE_PASSWORD`, `ANDROID_KEY_ALIAS`.
+  **Der Schlüssel darf nie verloren gehen**, sonst lassen sich installierte Apps nicht mehr updaten.

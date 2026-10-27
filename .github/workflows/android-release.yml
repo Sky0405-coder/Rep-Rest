@@ -1,0 +1,88 @@
+name: Android Release
+
+on:
+  push:
+    tags: ['v*']
+  # Manueller Testbuild: APK nur als Workflow-Artefakt, kein Release.
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  apk:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    env:
+      CI: 1
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+      - uses: gradle/actions/setup-gradle@v4
+
+      - name: Version bestimmen
+        id: version
+        run: |
+          if [[ "$GITHUB_REF" == refs/tags/v* ]]; then
+            v="${GITHUB_REF_NAME#v}"
+          else
+            v="$(node -p "require('./apps/mobile/app.json').expo.version")-dev.${GITHUB_RUN_NUMBER}"
+          fi
+          echo "version=$v" >> "$GITHUB_OUTPUT"
+          echo "APP_VERSION=$v" >> "$GITHUB_ENV"
+
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm test
+
+      - name: Native Android-Projekt erzeugen
+        working-directory: apps/mobile
+        run: pnpm exec expo prebuild --platform android --no-install
+
+      - name: Release-APK bauen
+        working-directory: apps/mobile/android
+        run: ./gradlew assembleRelease -PreactNativeArchitectures=arm64-v8a,armeabi-v7a --no-daemon
+
+      - name: APK signieren
+        env:
+          KEYSTORE_BASE64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+          KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
+        run: |
+          echo "$KEYSTORE_BASE64" | base64 -d > "$RUNNER_TEMP/release.keystore"
+          apksigner="$(ls -d "$ANDROID_HOME"/build-tools/*/ | sort -V | tail -1)apksigner"
+          out="rep-rest-${{ steps.version.outputs.version }}.apk"
+          "$apksigner" sign \
+            --ks "$RUNNER_TEMP/release.keystore" --ks-pass env:KEYSTORE_PASSWORD \
+            --ks-key-alias "$KEY_ALIAS" \
+            --out "$out" apps/mobile/android/app/build/outputs/apk/release/app-release.apk
+          "$apksigner" verify --print-certs "$out" | grep -i "SHA-256"
+          sha256sum "$out" > "$out.sha256"
+          rm "$RUNNER_TEMP/release.keystore"
+          echo "APK=$out" >> "$GITHUB_ENV"
+
+      - name: Als Artefakt hochladen
+        if: github.event_name == 'workflow_dispatch'
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.APK }}
+          path: |
+            ${{ env.APK }}
+            ${{ env.APK }}.sha256
+
+      - name: GitHub Release erstellen
+        if: startsWith(github.ref, 'refs/tags/v')
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          prerelease=""
+          [[ "$GITHUB_REF_NAME" == *-* ]] && prerelease="--prerelease"
+          gh release create "$GITHUB_REF_NAME" "$APK" "$APK.sha256" \
+            --title "Rep & Rest $GITHUB_REF_NAME" --generate-notes $prerelease
