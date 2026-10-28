@@ -5,7 +5,7 @@ import { Pressable, ScrollView, StyleSheet, Switch, View } from 'react-native';
 import { Stepper } from '@/components/stepper';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
-import { Spacing } from '@/constants/theme';
+import { Brand, Spacing } from '@/constants/theme';
 import { useAppStore, type LanguageSetting } from '@/data/app-store';
 import { useTheme } from '@/hooks/use-theme';
 
@@ -57,9 +57,21 @@ export default function SettingsScreen() {
           </View>
         </ThemedView>
 
-        <ThemedText type="small" themeColor="textSecondary">
-          {t('settings.version', { version: Constants.expoConfig?.version ?? '?' })}
-        </ThemedText>
+        <View style={styles.about}>
+          <ThemedText type="smallBold">{'Rep & Rest'}</ThemedText>
+          <ThemedText type="small">
+            <ThemedText type="small" style={{ color: Brand.rep }}>
+              Drill
+            </ThemedText>
+            {' & '}
+            <ThemedText type="small" style={{ color: Brand.rest }}>
+              Destress
+            </ThemedText>
+          </ThemedText>
+          <ThemedText type="small" themeColor="textSecondary">
+            {t('settings.version', { version: Constants.expoConfig?.version ?? '?' })}
+          </ThemedText>
+        </View>
       </ScrollView>
     </ThemedView>
   );
@@ -70,4 +82,5 @@ const styles = StyleSheet.create({
   content: { padding: Spacing.three, gap: Spacing.three },
   group: { borderRadius: 16, overflow: 'hidden' },
   row: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', padding: Spacing.three, gap: Spacing.two },
+  about: { alignItems: 'center', gap: 2, marginTop: Spacing.three },
 });

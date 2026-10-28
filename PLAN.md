@@ -1,6 +1,7 @@
 # Rep & Rest – Plan
 
-> **Name: Rep & Rest.** Logo: noch offen (Konzepte in `design/logo-concepts.html`).
+> **Name: Rep & Rest** · Slogan: **Drill & Destress** · Logo: **R²D²** (gestapelt, `design/logo.svg`;
+> Icons neu erzeugen mit `python3 design/generate-icons.py`).
 > Paket-ID: `de.knode.represt` (Android und iOS, nicht mehr ändern).
 
 ---
