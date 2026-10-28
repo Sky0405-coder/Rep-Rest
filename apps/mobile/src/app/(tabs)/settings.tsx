@@ -2,12 +2,15 @@ import Constants from 'expo-constants';
 import { useTranslation } from 'react-i18next';
 import { Pressable, ScrollView, StyleSheet, Switch, View } from 'react-native';
 
+import { Button } from '@/components/button';
 import { Stepper } from '@/components/stepper';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { Brand, Spacing } from '@/constants/theme';
 import { useAppStore, type LanguageSetting } from '@/data/app-store';
 import { useTheme } from '@/hooks/use-theme';
+import { updaterSupported, useUpdater } from '@/updater/store';
+import { UpdateBanner } from '@/updater/update-banner';
 
 const languages: { value: LanguageSetting; label: string }[] = [
   { value: 'system', label: 'settings.system' },
@@ -57,6 +60,8 @@ export default function SettingsScreen() {
           </View>
         </ThemedView>
 
+        {updaterSupported && <UpdatesSection />}
+
         <View style={styles.about}>
           <ThemedText type="smallBold">{'Rep & Rest'}</ThemedText>
           <ThemedText type="small">
@@ -77,7 +82,36 @@ export default function SettingsScreen() {
   );
 }
 
+function UpdatesSection() {
+  const { t } = useTranslation();
+  const { status, check } = useUpdater();
+  const busy = status === 'checking' || status === 'downloading';
+  return (
+    <View style={styles.section}>
+      <ThemedText type="smallBold">{t('updater.title')}</ThemedText>
+      <UpdateBanner alwaysShow />
+      {status !== 'available' && status !== 'downloading' && (
+        <Button
+          icon="refresh"
+          label={status === 'checking' ? t('updater.checking') : t('updater.check')}
+          onPress={check}
+          disabled={busy}
+        />
+      )}
+      {status === 'upToDate' && (
+        <ThemedText type="small" themeColor="textSecondary">
+          {t('updater.upToDate')}
+        </ThemedText>
+      )}
+      <ThemedText type="small" themeColor="textSecondary">
+        {t('updater.hint')}
+      </ThemedText>
+    </View>
+  );
+}
+
 const styles = StyleSheet.create({
+  section: { gap: Spacing.two },
   container: { flex: 1 },
   content: { padding: Spacing.three, gap: Spacing.three },
   group: { borderRadius: 16, overflow: 'hidden' },

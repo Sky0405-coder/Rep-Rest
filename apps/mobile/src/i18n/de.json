@@ -128,5 +128,17 @@
     "mobility": "Mobilität",
     "shoulders": "Schultern",
     "balance": "Balance"
+  },
+  "updater": {
+    "available": "Update auf Version {{version}} verfügbar",
+    "install": "Installieren ({{size}} MB)",
+    "later": "Später",
+    "downloading": "Wird heruntergeladen … {{percent}} %",
+    "failed": "Update fehlgeschlagen: {{error}}",
+    "title": "Updates",
+    "check": "Nach Updates suchen",
+    "checking": "Suche …",
+    "upToDate": "Du hast die neueste Version.",
+    "hint": "Beim ersten Update fragt Android, ob Rep & Rest Apps installieren darf. Das einmal erlauben."
   }
 }

@@ -7,6 +7,7 @@ import { useColorScheme } from 'react-native';
 import { useAppStore } from '@/data/app-store';
 // Initialisiert i18next beim Import.
 import { applyLanguage } from '@/i18n';
+import { updaterSupported, useUpdater } from '@/updater/store';
 
 void SplashScreen.preventAutoHideAsync();
 
@@ -21,6 +22,11 @@ export default function RootLayout() {
   }, []);
 
   useEffect(() => applyLanguage(language), [language]);
+
+  // Einmal pro App-Start im Hintergrund nach einer neuen Version schauen (nicht im Entwicklungsmodus).
+  useEffect(() => {
+    if (ready && updaterSupported && !__DEV__) void useUpdater.getState().check();
+  }, [ready]);
 
   if (!ready) return null;
 

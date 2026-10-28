@@ -12,6 +12,7 @@ import { useAppStore } from '@/data/app-store';
 import { templates } from '@/data/catalog';
 import { workoutMeta } from '@/data/labels';
 import { useLocale } from '@/i18n';
+import { UpdateBanner } from '@/updater/update-banner';
 
 export default function WorkoutsScreen() {
   const { t } = useTranslation();
@@ -34,15 +35,18 @@ export default function WorkoutsScreen() {
         contentContainerStyle={styles.list}
         stickySectionHeadersEnabled={false}
         ListHeaderComponent={
-          <View style={styles.actions}>
-            <Button
-              variant="primary"
-              icon="add"
-              label={t('workouts.new')}
-              onPress={() => router.push({ pathname: '/workout/edit/[id]', params: { id: 'new' } })}
-              style={styles.action}
-            />
-            <Button icon="download-outline" label={t('workouts.import')} onPress={() => router.push('/import')} style={styles.action} />
+          <View style={styles.header}>
+            <UpdateBanner />
+            <View style={styles.actions}>
+              <Button
+                variant="primary"
+                icon="add"
+                label={t('workouts.new')}
+                onPress={() => router.push({ pathname: '/workout/edit/[id]', params: { id: 'new' } })}
+                style={styles.action}
+              />
+              <Button icon="download-outline" label={t('workouts.import')} onPress={() => router.push('/import')} style={styles.action} />
+            </View>
           </View>
         }
         renderSectionHeader={({ section }) => (
@@ -78,6 +82,7 @@ export default function WorkoutsScreen() {
 const styles = StyleSheet.create({
   container: { flex: 1 },
   list: { padding: Spacing.three, gap: Spacing.two },
+  header: { gap: Spacing.three },
   actions: { flexDirection: 'row', gap: Spacing.two },
   action: { flex: 1 },
   sectionTitle: { marginTop: Spacing.three, marginBottom: Spacing.one, textTransform: 'uppercase', letterSpacing: 0.5 },

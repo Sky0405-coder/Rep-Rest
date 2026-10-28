@@ -6,6 +6,8 @@ import type { ConfigContext, ExpoConfig } from 'expo/config';
  */
 export default ({ config }: ConfigContext): ExpoConfig => {
   const version = process.env.APP_VERSION ?? config.version ?? '0.0.0';
+  // Builds für den Play Store dürfen keine APKs nachinstallieren (Store-Richtlinie).
+  const selfUpdate = process.env.STORE_BUILD !== '1';
   return {
     ...(config as ExpoConfig),
     version,
@@ -13,6 +15,11 @@ export default ({ config }: ConfigContext): ExpoConfig => {
       ...config.android,
       // Muss bei jedem Update steigen, sonst verweigert Android die Installation.
       versionCode: versionCode(version),
+      permissions: [...(config.android?.permissions ?? []), ...(selfUpdate ? ['android.permission.REQUEST_INSTALL_PACKAGES'] : [])],
+    },
+    extra: {
+      ...config.extra,
+      updater: selfUpdate ? { github: 'Sky0405-coder/Rep-Rest' } : null,
     },
   };
 };

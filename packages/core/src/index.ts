@@ -7,3 +7,4 @@ export * from './engine/timeline';
 export * from './engine/player';
 export * from './schema/figure';
 export * from './editor';
+export * from './version';

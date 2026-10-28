@@ -44,5 +44,7 @@ und nicht von Hand bearbeitet. Native Einstellungen gehören in `apps/mobile/app
   `.github/workflows/android-release.yml` eine signierte APK und hängt sie an ein GitHub Release.
   Tags mit Bindestrich (`v0.2.0-beta.1`) werden als Pre-Release markiert.
 - Manueller Testbuild ohne Release: Actions → „Android Release“ → „Run workflow“ (APK als Artefakt).
+- **In-App-Updates:** Die Android-App fragt beim Start `releases/latest` auf GitHub ab, lädt eine neuere APK
+  herunter und öffnet den Android-Installer. Für Play-Store-Builds mit `STORE_BUILD=1` bauen, dann ist das abgeschaltet.
 - Signierschlüssel: Repo-Secrets `ANDROID_KEYSTORE_BASE64`, `ANDROID_KEYSTORE_PASSWORD`, `ANDROID_KEY_ALIAS`.
   **Der Schlüssel darf nie verloren gehen**, sonst lassen sich installierte Apps nicht mehr updaten.
