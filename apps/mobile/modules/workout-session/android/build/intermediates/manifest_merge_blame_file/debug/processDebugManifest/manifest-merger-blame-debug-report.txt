@@ -1,0 +1,39 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="de.knode.represt.session" >
+4
+5    <uses-sdk android:minSdkVersion="24" />
+5-->INJECTED
+5-->INJECTED
+6
+7    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+7-->/home/kjell/Documents/WorkoutApp/apps/mobile/modules/workout-session/android/src/main/AndroidManifest.xml:2:5-76
+7-->/home/kjell/Documents/WorkoutApp/apps/mobile/modules/workout-session/android/src/main/AndroidManifest.xml:2:22-74
+8    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK" />
+8-->/home/kjell/Documents/WorkoutApp/apps/mobile/modules/workout-session/android/src/main/AndroidManifest.xml:3:5-91
+8-->/home/kjell/Documents/WorkoutApp/apps/mobile/modules/workout-session/android/src/main/AndroidManifest.xml:3:22-89
+9    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+9-->/home/kjell/Documents/WorkoutApp/apps/mobile/modules/workout-session/android/src/main/AndroidManifest.xml:4:5-76
+9-->/home/kjell/Documents/WorkoutApp/apps/mobile/modules/workout-session/android/src/main/AndroidManifest.xml:4:22-74
+10    <uses-permission android:name="android.permission.VIBRATE" />
+10-->/home/kjell/Documents/WorkoutApp/apps/mobile/modules/workout-session/android/src/main/AndroidManifest.xml:5:5-65
+10-->/home/kjell/Documents/WorkoutApp/apps/mobile/modules/workout-session/android/src/main/AndroidManifest.xml:5:22-63
+11    <uses-permission android:name="android.permission.WAKE_LOCK" />
+11-->/home/kjell/Documents/WorkoutApp/apps/mobile/modules/workout-session/android/src/main/AndroidManifest.xml:6:5-67
+11-->/home/kjell/Documents/WorkoutApp/apps/mobile/modules/workout-session/android/src/main/AndroidManifest.xml:6:22-65
+12
+13    <application>
+13-->/home/kjell/Documents/WorkoutApp/apps/mobile/modules/workout-session/android/src/main/AndroidManifest.xml:8:5-14:19
+14        <service
+14-->/home/kjell/Documents/WorkoutApp/apps/mobile/modules/workout-session/android/src/main/AndroidManifest.xml:9:9-13:42
+15            android:name="de.knode.represt.session.WorkoutSessionService"
+15-->/home/kjell/Documents/WorkoutApp/apps/mobile/modules/workout-session/android/src/main/AndroidManifest.xml:10:13-74
+16            android:exported="false"
+16-->/home/kjell/Documents/WorkoutApp/apps/mobile/modules/workout-session/android/src/main/AndroidManifest.xml:11:13-37
+17            android:foregroundServiceType="mediaPlayback"
+17-->/home/kjell/Documents/WorkoutApp/apps/mobile/modules/workout-session/android/src/main/AndroidManifest.xml:12:13-58
+18            android:stopWithTask="true" />
+18-->/home/kjell/Documents/WorkoutApp/apps/mobile/modules/workout-session/android/src/main/AndroidManifest.xml:13:13-40
+19    </application>
+20
+21</manifest>

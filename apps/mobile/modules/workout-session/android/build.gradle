@@ -1,0 +1,15 @@
+plugins {
+  id 'com.android.library'
+  id 'expo-module-gradle-plugin'
+}
+
+group = 'de.knode.represt'
+version = '1.0.0'
+
+android {
+  namespace "de.knode.represt.session"
+}
+
+dependencies {
+  implementation 'androidx.core:core-ktx:1.15.0'
+}

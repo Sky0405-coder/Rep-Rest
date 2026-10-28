@@ -1,0 +1,7 @@
+R_DEF: Internal format may change without notice
+local
+drawable rr_notification
+raw rr_done
+raw rr_go
+raw rr_gong
+raw rr_tick

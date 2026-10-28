@@ -1,0 +1,9 @@
+de.knode.represt.session.workout-session-pngs-0 /home/kjell/Documents/WorkoutApp/apps/mobile/modules/workout-session/android/build/generated/res/pngs/debug
+de.knode.represt.session.workout-session-updated_navigation_xml-1 /home/kjell/Documents/WorkoutApp/apps/mobile/modules/workout-session/android/build/generated/updated_navigation_xml/debug
+de.knode.represt.session.workout-session-mergeDebugResources-2 /home/kjell/Documents/WorkoutApp/apps/mobile/modules/workout-session/android/build/intermediates/incremental/debug/mergeDebugResources/merged.dir
+de.knode.represt.session.workout-session-mergeDebugResources-3 /home/kjell/Documents/WorkoutApp/apps/mobile/modules/workout-session/android/build/intermediates/incremental/debug/mergeDebugResources/stripped.dir
+de.knode.represt.session.workout-session-debug-4 /home/kjell/Documents/WorkoutApp/apps/mobile/modules/workout-session/android/build/intermediates/merged_res/debug/mergeDebugResources
+de.knode.represt.session.workout-session-debug-5 /home/kjell/Documents/WorkoutApp/apps/mobile/modules/workout-session/android/build/intermediates/packaged_res/debug/packageDebugResources
+de.knode.represt.session.workout-session-debug-6 /home/kjell/Documents/WorkoutApp/apps/mobile/modules/workout-session/android/src/debug/res
+de.knode.represt.session.workout-session-main-7 /home/kjell/Documents/WorkoutApp/apps/mobile/modules/workout-session/android/src/main/res
+gradleHome-0 /home/kjell/.gradle

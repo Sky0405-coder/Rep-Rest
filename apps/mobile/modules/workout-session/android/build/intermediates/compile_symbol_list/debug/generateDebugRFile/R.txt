@@ -1,0 +1,5 @@
+int drawable rr_notification 0x0
+int raw rr_done 0x0
+int raw rr_go 0x0
+int raw rr_gong 0x0
+int raw rr_tick 0x0

@@ -5,6 +5,7 @@ export * from './schema/workout';
 export * from './import';
 export * from './engine/timeline';
 export * from './engine/player';
+export * from './engine/schedule';
 export * from './schema/figure';
 export * from './editor';
 export * from './version';

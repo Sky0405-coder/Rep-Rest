@@ -5,6 +5,8 @@ Plan und Architektur: [PLAN.md](PLAN.md)
 ## Struktur
 ```
 apps/mobile            Expo-App (Android, iOS, Web → später Linux via Tauri)
+  modules/workout-session  Natives Android-Modul: Töne und Countdown-Benachrichtigung bei gesperrtem Bildschirm
+                           (die Töne in res/raw sind Kopien von assets/sounds, bei Änderungen beide ersetzen)
 packages/core          Datenmodell (Zod), Import/Export, Workout-Engine (Timeline + Player)
 packages/sport-packs   Mitgelieferte Übungen und Workouts pro Sportart
 scripts/               Hilfsskripte (Android-Umgebung, Emulator)

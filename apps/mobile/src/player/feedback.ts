@@ -1,4 +1,5 @@
 import { createAudioPlayer, setAudioModeAsync, type AudioPlayer } from 'expo-audio';
+import type { PlayerEvent } from '@workout/core';
 import * as Haptics from 'expo-haptics';
 import { Platform } from 'react-native';
 
@@ -42,7 +43,23 @@ export function releaseSounds() {
   players = undefined;
 }
 
-export function vibrate(kind: 'tick' | 'phase') {
+export type Haptic = 'tick' | 'phase';
+
+/** Pro Takt nur ein Ton, der wichtigste gewinnt. */
+export function soundFor(events: readonly PlayerEvent[]): Sound | undefined {
+  const types = new Set(events.map((e) => e.type));
+  if (types.has('done')) return 'done';
+  if (types.has('stepEnd')) return 'gong';
+  if (types.has('stepStart')) return 'go';
+  if (types.has('cue')) return 'tick';
+  return undefined;
+}
+
+export function hapticFor(sound: Sound): Haptic {
+  return sound === 'tick' ? 'tick' : 'phase';
+}
+
+export function vibrate(kind: Haptic) {
   if (Platform.OS === 'web') return;
   if (kind === 'tick') void Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
   else void Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);

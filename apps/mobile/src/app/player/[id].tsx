@@ -1,4 +1,4 @@
-import { localize, type PlayerConfig, type PlayerEvent } from '@workout/core';
+import { localize, type PlayerConfig, type PlayerState } from '@workout/core';
 import * as Crypto from 'expo-crypto';
 import { useKeepAwake } from 'expo-keep-awake';
 import { router, useLocalSearchParams } from 'expo-router';
@@ -14,8 +14,9 @@ import { useAppStore } from '@/data/app-store';
 import { getExercise, useWorkout } from '@/data/catalog';
 import { stepAmount, stepTitle, workoutSteps } from '@/data/labels';
 import { formatClock, formatDuration, useLocale } from '@/i18n';
-import { playSound, preloadSounds, vibrate } from '@/player/feedback';
-import { usePlayer } from '@/player/use-player';
+import { hapticFor, playSound, preloadSounds, soundFor, vibrate } from '@/player/feedback';
+import { buildSchedule, nativeSession, type Notice } from '@/player/session';
+import { usePlayer, type PlayerUpdate } from '@/player/use-player';
 
 export default function PlayerScreen() {
   useKeepAwake();
@@ -31,20 +32,40 @@ export default function PlayerScreen() {
   const config = useMemo<PlayerConfig>(() => ({ leadInSeconds: settings.leadInSeconds, cueSeconds: 3 }), [settings.leadInSeconds]);
   const saved = useRef(false);
 
-  const onEvents = (events: PlayerEvent[]) => {
-    const types = new Set(events.map((e) => e.type));
-    // Pro Takt nur ein Ton, der wichtigste gewinnt.
-    let sound: Parameters<typeof playSound>[0] | undefined;
-    if (types.has('done')) sound = 'done';
-    else if (types.has('stepEnd')) sound = 'gong';
-    else if (types.has('stepStart')) sound = 'go';
-    else if (types.has('cue')) sound = 'tick';
-    if (sound && settings.sound) playSound(sound);
-    if (sound && settings.vibration) vibrate(sound === 'tick' ? 'tick' : 'phase');
-    if (types.has('done')) save(true);
+  // Text der Benachrichtigung (Android) für einen Player-Zustand.
+  const describe = (s: PlayerState): Notice => {
+    const current = steps[s.stepIndex];
+    const inLeadIn = s.status === 'countdown' || (s.status === 'paused' && s.pausedFrom === 'countdown');
+    const endsAt = s.status === 'running' || s.status === 'countdown' ? s.endsAt : null;
+    if (s.status === 'done') return { title: t('player.finished'), text: workout ? localize(workout.name, locale) : '', endsAt: null };
+    if (inLeadIn || !current) return { title: t('player.getReady'), text: steps[0] ? stepTitle(steps[0], t, locale) : '', endsAt };
+    const upcoming = steps[s.stepIndex + 1];
+    const title = current.duration === undefined ? `${stepTitle(current, t, locale)} · ${stepAmount(current, t)}` : stepTitle(current, t, locale);
+    const text =
+      s.status === 'paused'
+        ? t('player.paused')
+        : upcoming
+          ? `${t('player.next')}: ${stepTitle(upcoming, t, locale)}`
+          : t('player.last');
+    return { title, text, endsAt };
   };
 
-  const { state, view, dispatch } = usePlayer(steps, config, onEvents);
+  const onUpdate = ({ command, state: next, events, now }: PlayerUpdate) => {
+    if (events.some((e) => e.type === 'done')) save(true);
+    if (nativeSession) {
+      // Der native Dienst spielt alle Töne nach Fahrplan, auch bei gesperrtem Bildschirm.
+      // Neu planen nur nach Eingriffen, der Takt ändert am Fahrplan nichts.
+      if (command.type === 'tick') return;
+      const schedule = buildSchedule({ state: next, events, now, steps, config, sound: settings.sound, vibration: settings.vibration, describe });
+      nativeSession.update(JSON.stringify(schedule));
+      return;
+    }
+    const sound = soundFor(events);
+    if (sound && settings.sound) playSound(sound);
+    if (sound && settings.vibration) vibrate(hapticFor(sound));
+  };
+
+  const { state, view, dispatch } = usePlayer(steps, config, onUpdate);
 
   function save(completed: boolean) {
     if (saved.current || !workout || state.startedAt === null) return;
@@ -61,15 +82,39 @@ export default function PlayerScreen() {
     });
   }
 
+  // Den Dienst nur beim Öffnen starten und beim Schließen beenden, nicht bei jedem neuen dispatch.
+  const dispatchRef = useRef(dispatch);
   useEffect(() => {
-    preloadSounds();
-    dispatch({ type: 'start' });
-  }, [dispatch]);
+    dispatchRef.current = dispatch;
+  });
+  useEffect(() => {
+    const session = nativeSession;
+    if (!session) {
+      preloadSounds();
+      dispatchRef.current({ type: 'start' });
+      return;
+    }
+    let active = true;
+    // Beim ersten Workout fragt Android einmal nach Benachrichtigungen (Countdown im Sperrbildschirm).
+    void session
+      .requestNotificationPermission()
+      .catch(() => {})
+      .then(() => {
+        if (!active) return;
+        session.start(t('player.channel'));
+        dispatchRef.current({ type: 'start' });
+      });
+    return () => {
+      active = false;
+      session.stop();
+    };
+  }, [t]);
 
   if (!workout || steps.length === 0) return null;
 
   const { step, nextStep, remainingMs } = view;
-  const leadIn = state.status === 'countdown' || (state.status === 'paused' && state.pausedFrom === 'countdown');
+  // „ready“ nur kurz vor dem Start (z. B. während Android nach Benachrichtigungen fragt).
+  const leadIn = state.status === 'ready' || state.status === 'countdown' || (state.status === 'paused' && state.pausedFrom === 'countdown');
   const done = state.status === 'done';
   const paused = state.status === 'paused';
   const background = done || leadIn || step?.kind === 'note' ? Brand.night : step?.kind === 'rest' ? Brand.rest : Brand.rep;

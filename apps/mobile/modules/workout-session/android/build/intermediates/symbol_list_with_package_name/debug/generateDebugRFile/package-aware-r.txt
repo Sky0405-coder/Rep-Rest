@@ -1,0 +1,6 @@
+de.knode.represt.session
+drawable rr_notification
+raw rr_done
+raw rr_go
+raw rr_gong
+raw rr_tick

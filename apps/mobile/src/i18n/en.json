@@ -74,7 +74,8 @@
     "plus10": "+10 s",
     "quitTitle": "End workout?",
     "quit": "End",
-    "continue": "Continue"
+    "continue": "Continue",
+    "channel": "Active workout"
   },
   "history": {
     "title": "History",

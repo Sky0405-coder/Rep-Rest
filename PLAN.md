@@ -132,6 +132,7 @@ Import per Datei, Share-Sheet, Zwischenablage, QR-Code oder Link. Die Validierun
 2. **State-Machine:** `countdown → work → rest → … → done`, mit Pause, Weiter, Zurück und +10 s.
 3. **Zeitbasis:** Restzeit aus Zeitstempeln berechnen, nicht über Ticks. Dadurch kein Drift, auch nach Zeit im Hintergrund.
 4. **Cues als Events:** Beeps bei 3-2-1, Gong am Ende, Vibration, Sprachansage. Die UI bzw. Plattform spielt sie ab.
+   - **Gesperrter Bildschirm (Android, ✅):** `predictTicks()` sagt alle kommenden Cues mit Zeitpunkt voraus. Das lokale Modul `apps/mobile/modules/workout-session` spielt sie in einem Foreground-Service mit SoundPool ab (mischt mit Musik) und zeigt Übung und Countdown als Benachrichtigung. Nach jeder Eingabe wird neu geplant. iOS folgt später.
 5. Reines TypeScript ohne UI, vollständig mit Unit-Tests abgedeckt (Vitest).
 
 ---

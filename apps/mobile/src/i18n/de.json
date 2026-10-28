@@ -74,7 +74,8 @@
     "plus10": "+10 s",
     "quitTitle": "Workout beenden?",
     "quit": "Beenden",
-    "continue": "Weiter"
+    "continue": "Weiter",
+    "channel": "Laufendes Workout"
   },
   "history": {
     "title": "Verlauf",

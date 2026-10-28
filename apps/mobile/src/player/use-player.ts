@@ -14,20 +14,24 @@ import { AppState } from 'react-native';
 type Distribute<T> = T extends unknown ? Omit<T, 'now'> : never;
 export type PlayerCommand = Distribute<PlayerAction>;
 
+/** Ergebnis eines dispatch: Ereignisse plus der neue Zustand und der Zeitpunkt. */
+export type PlayerUpdate = { command: PlayerCommand; state: PlayerState; events: PlayerEvent[]; now: number };
+
 const TICK_MS = 100;
 
 /**
  * Verbindet den reinen Player-Reducer aus `core` mit React: Takt, App-Wechsel
  * und Ereignisse (Töne, Vibration). Die Zeit kommt immer aus Date.now().
+ * `onUpdate` kommt bei jedem Ereignis und nach jeder Aktion außer dem Takt.
  */
-export function usePlayer(steps: readonly Step[], config: PlayerConfig, onEvents: (events: PlayerEvent[]) => void) {
+export function usePlayer(steps: readonly Step[], config: PlayerConfig, onUpdate: (update: PlayerUpdate) => void) {
   const [state, setState] = useState<PlayerState>(initialPlayerState);
   // Spiegel des States für dispatch, damit schnelle Aktionen nicht auf einem veralteten Stand arbeiten.
   const stateRef = useRef<PlayerState>(state);
   const [now, setNow] = useState(() => Date.now());
-  const onEventsRef = useRef(onEvents);
+  const onUpdateRef = useRef(onUpdate);
   useEffect(() => {
-    onEventsRef.current = onEvents;
+    onUpdateRef.current = onUpdate;
   });
 
   const dispatch = useCallback(
@@ -39,7 +43,9 @@ export function usePlayer(steps: readonly Step[], config: PlayerConfig, onEvents
         setState(result.state);
       }
       setNow(t);
-      if (result.events.length > 0) onEventsRef.current(result.events);
+      if (result.events.length > 0 || command.type !== 'tick') {
+        onUpdateRef.current({ command, state: result.state, events: result.events, now: t });
+      }
     },
     [steps, config],
   );
